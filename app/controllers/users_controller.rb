@@ -1,12 +1,9 @@
 class UsersController < ApplicationController
 
   def my_portfolio
+    @user = current_user
     @tracked_stocks = current_user.stocks
-
-    @tracked_stocks.each do |tracked_stock|
-      tracked_stock.last_price = Stock.update_stock(tracked_stock.ticker)
-      tracked_stock.save
-    end
+    update_tracked_stocks(@tracked_stocks)
   end
   
   def my_friends
@@ -34,6 +31,20 @@ class UsersController < ApplicationController
           flash.now[:alert] = "Please enter a friend"
           format.js { render partial: 'users/friend_result'}
       end
+    end
+  end
+
+  def show 
+    @user = User.find(params[:id])
+    @tracked_stocks = @user.stocks
+    update_tracked_stocks(@tracked_stocks)
+  end
+
+  private
+  def update_tracked_stocks(tracked_stocks)
+    tracked_stocks.each do |tracked_stock|
+      tracked_stock.last_price = Stock.update_stock(tracked_stock.ticker)
+      tracked_stock.save
     end
   end
 end
