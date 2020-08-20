@@ -33,6 +33,7 @@
                         <% if current_user.id == @user.id %>
                             <%= link_to 'Remove', user_stock_path(stock), method: :delete, data: {confirm:"Are you sure?"}, class:"btn btn-sm btn-warning" %>
                         <% end %>
+                        <%= link_to  "Details", stock_path(stock.id), class:"btn btn-sm btn-secondary" %>
                     </td>
                 </tr>
             <% end %>

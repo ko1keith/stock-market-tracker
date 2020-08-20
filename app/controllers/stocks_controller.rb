@@ -21,4 +21,8 @@ class StocksController < ApplicationController
         end
     end
 
+    def show
+        @stock = Stock.find(params[:id])
+        @company_details = Stock.company_details(@stock.ticker)
+    end
 end
