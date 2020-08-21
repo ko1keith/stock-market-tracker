@@ -25,9 +25,11 @@ class Stock < ApplicationRecord
   end
 
   def self.company_details(ticker_symbol)
-
     company = @client.company(ticker_symbol)
-    
+  end
+
+  def self.company_news(ticker_symbol)
+    news = @client.news(ticker_symbol, 6)
   end
 
 end
