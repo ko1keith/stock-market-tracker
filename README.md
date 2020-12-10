@@ -10,3 +10,5 @@ Signup, search and follow stocks.
 Demo credentials:
 - email: test@email.com
 - password: 123456
+
+![Demo](stonktracker.gif)
